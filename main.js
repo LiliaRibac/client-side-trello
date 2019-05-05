@@ -22,8 +22,17 @@ function addSwimlane() {
      nameText.style.display = "none"; //hide name text
      nameContainer.appendChild(nameText);
 
+     let editButton = document.createElement("button");
+     editButton.setAttribute("class", "editBtn");
+     editButton.innerText = "Edit name";
+     editButton.style.display = "none" //hide edit button
+     editButton.addEventListener("click", editName);
+     nameContainer.appendChild(editButton);
+    
+
      swimlane.appendChild(nameContainer);
 }
+
  function saveName(){
      let inputBox = this.parentElement.childNodes[0]; // input textbox
      let input = inputBox.value; //get user input
@@ -47,3 +56,16 @@ function addSwimlane() {
      }
 
  }
+ 
+
+function editName(){
+    let inputBox = this.parentElement.childNodes[0]; //input textbox
+    let save = this.parentElement.childNodes[1]; //save button
+    let name = this.parentElement.childNodes[2]; //name text
+    let edit = this. parentElement.childNodes[3]; //edit button
+
+    inputBox.style.display = "block" // show input textbox
+    save.style.display = "block"; // show save button
+    name.style.display = "none"; //hide name text
+    edit.style.display = "none" //hide name text
+}
