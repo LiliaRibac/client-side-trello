@@ -29,7 +29,11 @@ function addSwimlane() {
      editButton.addEventListener("click", editName);
      nameContainer.appendChild(editButton);
     
-
+    let addCardButton = document.createElement("button");
+    addCardButton.innerText = "Add card";
+    addCardButton.addEventListener("click", addCard);
+    swimlane.appendChild(addCardButton);  
+     
      swimlane.appendChild(nameContainer);
 }
 
@@ -49,7 +53,7 @@ function addSwimlane() {
       save.style.display = "none"; //hide save button
       inputBox.style.display = "none" //hide input box
       inputBox.style.backgroundColor = "white"
-      //inputBox.value = ""// clear textbox 
+      inputBox.value = ""// clear textbox 
 
      } else { //textbox is empty
          inputBox.style.backgroundColor = "red";
@@ -68,4 +72,30 @@ function editName(){
     save.style.display = "block"; // show save button
     name.style.display = "none"; //hide name text
     edit.style.display = "none" //hide name text
+}
+
+function addCard(){
+
+    let card = document.createElement("div");
+    card.setAttribute("class", "card");
+
+    let cardTitleInput = document.createElement("input");
+    cardTitleInput.setAttribute("placeholder", "Enter card title");
+    card.appendChild(cardTitleInput);   
+
+    let cardTitle= document.createElement("h3");
+    cardTitle.style.display = "none";
+    card.appendChild(cardTitle);
+
+    let cardDescriptionInput = document.createElement("input");
+    cardDescriptionInput.setAttribute("placeholder", "Enter card description");
+    card.appendChild(cardDescriptionInput);
+
+    let cardDescription = document.createElement("p");
+    cardDescription.style.display ="none";
+    card.appendChild(cardDescription);
+
+    this.parentElement.appendChild(card)
+
+    
 }

@@ -29,3 +29,10 @@ input, button{
     margin: 5px;
 
 }
+.card{
+ background-color: white;
+ width: 95%;
+ border:solid 1px black;
+ margin-top: 5px;
+ padding: 5px;
+}
