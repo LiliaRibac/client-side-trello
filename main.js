@@ -29,21 +29,30 @@ function addSwimlane() {
     editButton.addEventListener("click", editName);
     nameContainer.appendChild(editButton);
 
+    swimlane.appendChild(nameContainer);
+
     let addCardButton = document.createElement("button");
     addCardButton.innerText = "Add card";
     addCardButton.addEventListener("click", addCard);
     swimlane.appendChild(addCardButton);
 
-    let deleteAllCardsButton = document.createElement("button");
-    deleteAllCardsButton.innerText = "Delete all cards";
-    deleteAllCardsButton.addEventListener("click", deleteAllCards);
-    swimlane.appendChild(deleteAllCardsButton)
+    // let deleteAllCardsButton = document.createElement("button");
+    // deleteAllCardsButton.innerText = "Delete all cards";
+    // deleteAllCardsButton.addEventListener("click", deleteAllCards);
+    // swimlane.appendChild(deleteAllCardsButton)
 
-    swimlane.appendChild(nameContainer);
+    let moveRightButton = document.createElement("button");
+    moveRightButton.innerText = "Move swimlane right";
+    moveRightButton.addEventListener("click", moveSwimlaneRight);
+    swimlane.appendChild(moveRightButton);
+
+
+
+
 
     let moveLeftButton = document.createElement("button");
-    moveLeftButton.innerHTML = "Move swimlane left";
-    moveLeftButton.addEventListener("click",  moveSwimlaneLeft)
+    moveLeftButton.innerText = "Move swimlane left";
+    moveLeftButton.addEventListener("click", moveSwimlaneLeft)
     swimlane.appendChild(moveLeftButton);
 }
 
@@ -126,7 +135,7 @@ function addCard() {
     card.appendChild(moveCardDownButton);
 
     let moveCardLeftButton = document.createElement("button");
-    moveCardLeftButton.innerText ="Move card left";
+    moveCardLeftButton.innerText = "Move card left";
     moveCardLeftButton.addEventListener("click", moveCardLeft);
     card.appendChild(moveCardLeftButton);
 
@@ -176,14 +185,15 @@ function saveCard() {
             inputTitleBox.style.backgroundColor = "red";
         inputDescriptionBox.style.backgroundColor = "white";
     }
-    if (inputTitle && !inputDescription){ // description textbox empty
+    if (inputTitle && !inputDescription) { // description textbox empty
         inputTitleBox.style.backgroundColor = "white";
-    inputDescriptionBox.style.backgroundColor = "red";
-    } if (!inputTitle && !inputDescription){
+        inputDescriptionBox.style.backgroundColor = "red";
+    }
+    if (!inputTitle && !inputDescription) {
         inputTitleBox.style.backgroundColor = "red";
         inputDescriptionBox.style.backgroundColor = "red";
     }
-}   
+}
 
 function editCard() {
     let inputTitleBox = this.parentElement.childNodes[0]; //input title textbox
@@ -201,25 +211,25 @@ function editCard() {
     edit.style.display = "none";
 }
 
-function moveCardUp(){
+function moveCardUp() {
     let card = this.parentElement; //card to move
     let previous = card.previousElementSibling; // previous card
     let swimlane = card.parentElement;
 
-    if(previous && previous.getAttribute("class") === "card"){
+    if (previous && previous.getAttribute("class") === "card") {
         //make sure previous card exists
         swimlane.removeChild(card); //remove card from current position
-        swimlane.insertBefore(card,  previous); // move card before previous card
+        swimlane.insertBefore(card, previous); // move card before previous card
 
     }
 }
 
-function moveCardDown(){
+function moveCardDown() {
     let card = this.parentElement; // card to move
     let next = card.nextElementSibling; // next card
     let swimlane = card.parentElement;
 
-    if(next && next.getAttribute("class") === "card") {
+    if (next && next.getAttribute("class") === "card") {
         //make sure next card exists
         swimlane.removeChild(next); //remove card from current position
         swimlane.insertBefore(next, card) //move this card before this card
@@ -227,63 +237,69 @@ function moveCardDown(){
 }
 
 
-function moveCardLeft(){
-    let card = this.parentElement; 
+function moveCardLeft() {
+    let card = this.parentElement;
     let swimlane = card.parentElement;
     let previousSwimlane = swimlane.previousElementSibling;
 
-    if(previousSwimlane){
+    if (previousSwimlane) {
         swimlane.removeChild(card); // remove card from current swimlane
         previousSwimlane.appendChild(card); //add card to previous swimlane
     }
 }
 
-function moveCardRight(){
+function moveCardRight() {
     let card = this.parentElement; //card to move
     let swimlane = card.parentElement;
     let nextSwimlane = swimlane.nextElementSibling;
 
-    if(nextSwimlane){
+    if (nextSwimlane) {
         swimlane.removeChild(card); //remove card from current swimlane
         nextSwimlane.appendChild(card); // add card to next swimlane
     }
 }
 
-function deleteCard(){
+function deleteCard() {
     let card = this.parentElement; // card to delete
     let swimlane = card.parentElement; // swimlane that the card is in 
-    if(confirm("Delete card?"))
-    swimlane.removeChild(card) //delete card from swimlane
+    if (confirm("Delete card?"))
+        swimlane.removeChild(card) //delete card from swimlane
 }
 
-function deleteAllCards(){
-    let swimlane = this.parentElement;
-    let count = swimlane.childElementCount;
+// function deleteAllCards(){
+//     let swimlane = this.parentElement;
+//     let count = swimlane.childElementCount;
 
-    if(count > 6 && confirm ("Delete all cards?")){ //swimlane has 6 other elements,followed by any cards
-     for (let i = 6; i < count; i++){ //start with first card and delete each card one by one
-        swimlane.removeChild(swimlane.childNodes[6]); //keep removing first card
+//     if(count > 6 && confirm ("Delete all cards?")){ //swimlane has 6 other elements,followed by any cards
+//      for (let i = 6; i < count; i++){ //start with first card and delete each card one by one
+//         swimlane.removeChild(swimlane.childNodes[6]); //keep removing first card
 
-     }
-    }
-}
-
-
+//      }
+//     }
+// }
 
 
-
-
-
-
-
-
-function moveSwimlaneLeft(){
+function moveSwimlaneLeft() {
     let swimlane = this.parentElement; // swimlane to move
-    let previousSwimlane = swimlane.previousElementSibling;let container = swimlane.parentElement;
+    let previousSwimlane = swimlane.previousElementSibling;
+    let container = swimlane.parentElement;
 
-    if (previousSwimlane){ //make sure  previous swimlane exists
+    if (previousSwimlane) { //make sure  previous swimlane exists
         container.removeChild(swimlane) //remove swimlane from current position
-        container.insertBefore(swimlane,previousSwimlane) //move swimlane before previous swimlane
+        container.insertBefore(swimlane, previousSwimlane) //move swimlane before previous swimlane
 
     }
 }
+
+function moveSwimlaneRight(){
+    let swimlane = this.parentElement;
+    let nextSwimlane = swimlane.nextElementSibling;
+    let container = swimlane.parentElement;
+
+    if(nextSwimlane){ //make sure next swimlane exists
+        container.removeChild(nextSwimlane) //remove next swimlane from current position 
+        container.insertBefore(nextSwimlane, swimlane); //move next swimlane before this swimlane
+        
+    }
+}
+
