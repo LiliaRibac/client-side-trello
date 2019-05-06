@@ -36,24 +36,26 @@ function addSwimlane() {
     addCardButton.addEventListener("click", addCard);
     swimlane.appendChild(addCardButton);
 
-    // let deleteAllCardsButton = document.createElement("button");
-    // deleteAllCardsButton.innerText = "Delete all cards";
-    // deleteAllCardsButton.addEventListener("click", deleteAllCards);
-    // swimlane.appendChild(deleteAllCardsButton)
+    let deleteAllCardsButton = document.createElement("button");
+    deleteAllCardsButton.innerText = "Delete all cards";
+    deleteAllCardsButton.addEventListener("click", deleteAllCards);
+    swimlane.appendChild(deleteAllCardsButton)
 
     let moveRightButton = document.createElement("button");
     moveRightButton.innerText = "Move swimlane right";
     moveRightButton.addEventListener("click", moveSwimlaneRight);
     swimlane.appendChild(moveRightButton);
 
-
-
-
-
     let moveLeftButton = document.createElement("button");
     moveLeftButton.innerText = "Move swimlane left";
     moveLeftButton.addEventListener("click", moveSwimlaneLeft)
     swimlane.appendChild(moveLeftButton);
+
+
+    let deleteButton = document.createElement("button");
+    deleteButton.innerText = "Delete swimlane";
+    deleteButton.addEventListener("click", deleteSwimlane);
+    swimlane.appendChild(deleteButton);
 }
 
 function saveName() {
@@ -266,17 +268,17 @@ function deleteCard() {
         swimlane.removeChild(card) //delete card from swimlane
 }
 
-// function deleteAllCards(){
-//     let swimlane = this.parentElement;
-//     let count = swimlane.childElementCount;
+function deleteAllCards() {
+    let swimlane = this.parentElement;
+    let count = swimlane.childElementCount;
 
-//     if(count > 6 && confirm ("Delete all cards?")){ //swimlane has 6 other elements,followed by any cards
-//      for (let i = 6; i < count; i++){ //start with first card and delete each card one by one
-//         swimlane.removeChild(swimlane.childNodes[6]); //keep removing first card
+    if (count > 6 && confirm("Delete all cards?")) { //swimlane has 6 other elements,followed by any cards
+        for (let i = 6; i < count; i++) { //start with first card and delete each card one by one
+            swimlane.removeChild(swimlane.childNodes[6]); //keep removing first card
 
-//      }
-//     }
-// }
+        }
+    }
+}
 
 
 function moveSwimlaneLeft() {
@@ -291,15 +293,44 @@ function moveSwimlaneLeft() {
     }
 }
 
-function moveSwimlaneRight(){
+function moveSwimlaneRight() {
     let swimlane = this.parentElement;
     let nextSwimlane = swimlane.nextElementSibling;
     let container = swimlane.parentElement;
 
-    if(nextSwimlane){ //make sure next swimlane exists
+    if (nextSwimlane) { //make sure next swimlane exists
         container.removeChild(nextSwimlane) //remove next swimlane from current position 
         container.insertBefore(nextSwimlane, swimlane); //move next swimlane before this swimlane
-        
+
     }
 }
 
+function deleteSwimlane() {
+    let swimlane = this.parentElement;
+    let container = swimlane.parentElement;
+
+    if (confirm("Delete swimlane?")) {
+        if (swimlane.childElementCount > 6) { // swimlane has cards (plus 6 other elements before them)
+            if (!confirm("Delete all cards in swimlane?")) {
+                let position = parseInt(prompt("Enter swimlane to move cards to:"));
+                let count = swimlane.childElementCount;
+                for (let i = 6; i < count; i++) { // starting with first card, move each card one by one
+                    let newSwimlane = container.childNodes[position - 1]; // swimlane to move cards to
+                    newSwimlane.appendChild(swimlane.childNodes[6]); // move a card to new swimlane
+                }
+            }
+        }
+        container.removeChild(swimlane); // remove swimlane
+    }
+}
+
+function deleteAllSwimlanes() {
+    let container = document.getElementById("container");
+    let count = container.childElementCount;
+
+    if (count > 0 && confirm("Delete all swimlanes?")) { // there are swimlanes to delete
+        for (let i = 0; i < count; i++) { // delete each swimlane one by one
+            container.removeChild(container.childNodes[0]); // keep removing first swimlane
+        }
+    }
+}
