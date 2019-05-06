@@ -35,6 +35,11 @@ function addSwimlane() {
     swimlane.appendChild(addCardButton);
 
     swimlane.appendChild(nameContainer);
+
+    let moveLeftButton = document.createElement("button");
+    moveLeftButton.innerHTML = "Move swimlane left";
+    moveLeftButton.addEventListener("click",  moveSwimlaneLeft)
+    swimlane.appendChild(moveLeftButton);
 }
 
 function saveName() {
@@ -163,5 +168,15 @@ function editCard() {
     title.style.display = "none" //hide input title textbox
     description.style.display = "none" //hide input description textbox
     edit.style.display = "none";
+}
 
+function moveSwimlaneLeft(){
+    let swimlane = this.parentElement; // swimlane to move
+    let previousSwimlane = swimlane.previousElementSibling;let container = swimlane.parentElement;
+
+    if (previousSwimlane){ //make sure  previous swimlane exists
+        container.removeChild(swimlane) //remove swimlane from current position
+        container.insertBefore(swimlane,previousSwimlane) //move swimlane before previous swimlane
+
+    }
 }
