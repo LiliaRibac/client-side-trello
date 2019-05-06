@@ -3,32 +3,32 @@ body{
     }
 
 .swimlane{
-    width: 250px;
+    /* width: 50px; */
     /* height: 100%; */
     border:solid 1px black;
     background-color: bisque;
-    flex-basis: 200px;
+    flex-basis: 250px;
     padding: 5px;
     align-items: space-between;
     margin:10px;
    
 }
+
 .container{
-    /* border:solid 2px black;
-    background-color: bisque; */
-    /* width: 100%; */
-   
-    display: flex
+    display: flex;
 }
+
 
 .swimlane-name-container{
     display: flex;
     justify-content: space-between;
 }
+
 input, button{
     margin: 5px;
 
-}
+    }
+
 .card{
  background-color: white;
  width: 95%;
@@ -37,7 +37,15 @@ input, button{
  padding: 5px;
 }
 
-.saveBtn, .editBtn, .edit-card-btn {
+.saveBtn,.editCardBtn, .editBtn{
     border-radius: 25px 5px 25px;
     background: whitesmoke;
+   /* display: inline-block; */
+    
+} 
+
+.fas{
+ color:#67818A;
+
 }
+

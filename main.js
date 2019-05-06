@@ -125,7 +125,7 @@ function addCard() {
     let editCardButton = document.createElement("button");
     //editCardButton.innerHTML = "Edit card";
     editCardButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
-    editCardButton.setAttribute("class", "edit-card-btn")
+    editCardButton.setAttribute("class", "editCardBtn")
     editCardButton.addEventListener("click", editCard);
     card.appendChild(editCardButton);
 
@@ -219,6 +219,7 @@ function editCard() {
     title.style.display = "none" //hide input title textbox
     description.style.display = "none" //hide input description textbox
     edit.style.display = "none";
+    
 }
 
 function moveCardUp() {
