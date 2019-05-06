@@ -95,7 +95,52 @@ function addCard(){
     cardDescription.style.display ="none";
     card.appendChild(cardDescription);
 
-    this.parentElement.appendChild(card)
+    let saveCardButton = document.createElement("button");
+    saveCardButton.innerText = "Save Card";
+    saveCardButton.addEventListener("click", saveCard);
+    card.appendChild(saveCardButton);
 
+    let editCardButton = document.createElement("button");
+    editCardButton.innerHTML = "Edit card"
+    editCardButton.addEventListener("click", editCard);
+    card.appendChild(editCardButton);
+
+    this.parentElement.appendChild(card)
     
+}
+function saveCard(){
+    let inputTitleBox = this.parentElement.childNodes[0]; //input textbox
+    let inputTitle = inputTitleBox.value //get user input
+    let inputDescriptionBox = this.parentElement.childNodes[2]; //input textbox
+    let inputDescription = inputDescriptionBox.value //get user input
+
+    if(inputTitle && inputDescription){ //textboxe are not empty
+        let title = this.parentElement.childNodes[1] // title text 
+        title.innerText = inputTitle; //change title
+        title.style.display = "block";  // show title text
+
+        let description = this.parentElement.childNodes[3]; // description text
+        description.innerText = inputDescription; //change description
+        description.style.display = "block"; // show description text
+
+        let edit = this.parentElement.childNodes[5]; //edit button
+        let save = this.parentElement.childNodes[4]; //save button
+        edit.style.display = "block"; // show edit button
+        save.style.display = "none"; // hide save button
+
+        inputTitleBox.style.display = "none";  //hide title textbox
+        inputDescriptionBox.style.display = "none" //hide description textbox
+        inputTitleBox.style.backgroundColor = "white";
+        inputDescriptionBox.style.backgroundColor = "white";
+    }
+}
+
+function editCard() {
+    let inputTitleBox = this.parentElement.childNodes[0]; //input title textbox
+    let title = this.parentElement.childNodes[1]; //title text
+    let inputDescriptionBox = this.parentElement.childNodes[2]; // input description textbox
+    let description = this.parentElement.childNodes[3]; // description text 
+    let save = this.parentElement.childNodes[4]; //save button
+    let edit  = this.parentElement.childNodes[5]; //edit button
+
 }
