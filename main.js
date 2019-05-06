@@ -34,6 +34,11 @@ function addSwimlane() {
     addCardButton.addEventListener("click", addCard);
     swimlane.appendChild(addCardButton);
 
+    let deleteAllCardsButton = document.createElement("button");
+    deleteAllCardsButton.innerText = "Delete all cards";
+    deleteAllCardsButton.addEventListener("click", deleteAllCards);
+    swimlane.appendChild(deleteAllCardsButton)
+
     swimlane.appendChild(nameContainer);
 
     let moveLeftButton = document.createElement("button");
@@ -110,7 +115,12 @@ function addCard() {
     editCardButton.addEventListener("click", editCard);
     card.appendChild(editCardButton);
 
-    this.parentElement.appendChild(card)
+    let moveCardUpButton = document.createElement("button");
+    moveCardUpButton.innerText = "Move card up";
+    moveCardUpButton.addEventListener("click", moveCardUp);
+    card.appendChild(moveCardUpButton);
+
+    this.parentElement.appendChild(card) //add card to swimlane
 
 }
 
@@ -169,6 +179,40 @@ function editCard() {
     description.style.display = "none" //hide input description textbox
     edit.style.display = "none";
 }
+
+function moveCardUp(){
+    let card = this.parentElement; //card to move
+    let previous = card.previousElementSibling; // previous card
+    let swimlane = card.parentElement;
+
+    if(previous && previous.getAttribute("class") == "card"){
+        //make sure previous card exists
+        swimlane.removeChild(card); //remove card from current position
+        swimlane.insertBefore(card,  previous); // move card before previous card
+
+    }
+}
+
+function deleteAllCards(){
+    let swimlane = this.parentElement;
+    let count = swimlane.childElementCount;
+
+    if(count > 6 && confirm ("Delete all cards?")){ //swimlane has 6 other elements,followed by any cards
+     for (let i = 6; i < count; i++){ //start with first card and delete each card one by one
+        swimlane.removeChild(swimlane.childNodes[6]); //keep removing first card
+
+     }
+    }
+}
+
+
+
+
+
+
+
+
+
 
 function moveSwimlaneLeft(){
     let swimlane = this.parentElement; // swimlane to move
