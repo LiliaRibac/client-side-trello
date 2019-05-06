@@ -135,7 +135,11 @@ function addCard() {
     moveCardRightButton.addEventListener("click", moveCardRight);
     card.appendChild(moveCardRightButton);
 
-
+    let deleteCardButton = document.createElement("button");
+    deleteCardButton.innerText = "Delete Card";
+    delete
+    deleteCardButton.addEventListener("click", deleteCard);
+    card.appendChild(deleteCardButton)
 
     this.parentElement.appendChild(card) //add card to swimlane
 
@@ -245,6 +249,12 @@ function moveCardRight(){
     }
 }
 
+function deleteCard(){
+    let card = this.parentElement; // card to delete
+    let swimlane = card.parentElement; // swimlane that the card is in 
+    if(confirm("Delete card?"))
+    swimlane.removeChild(card) //delete card from swimlane
+}
 
 function deleteAllCards(){
     let swimlane = this.parentElement;
