@@ -14,7 +14,7 @@ function addSwimlane() {
 
     let saveButton = document.createElement("button");
     saveButton.setAttribute("class", "saveBtn");
-    saveButton.innerText = "Save Name";
+    saveButton.innerText = "Save";
     saveButton.addEventListener("click", saveName);
     nameContainer.appendChild(saveButton);
 
@@ -24,7 +24,8 @@ function addSwimlane() {
 
     let editButton = document.createElement("button");
     editButton.setAttribute("class", "editBtn");
-    editButton.innerText = "Edit name";
+    //editButton.innerText = "Edit name";
+    editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
     editButton.style.display = "none" //hide edit button
     editButton.addEventListener("click", editName);
     nameContainer.appendChild(editButton);
@@ -74,7 +75,7 @@ function saveName() {
         save.style.display = "none"; //hide save button
         inputBox.style.display = "none" //hide input box
         inputBox.style.backgroundColor = "white"
-        inputBox.value = "" // clear textbox 
+        //inputBox.value = "" // clear textbox 
 
     } else { //textbox is empty
         inputBox.style.backgroundColor = "red";
@@ -122,32 +123,39 @@ function addCard() {
     card.appendChild(saveCardButton);
 
     let editCardButton = document.createElement("button");
-    editCardButton.innerHTML = "Edit card"
+    //editCardButton.innerHTML = "Edit card";
+    editCardButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+    editCardButton.setAttribute("class", "edit-card-btn")
     editCardButton.addEventListener("click", editCard);
     card.appendChild(editCardButton);
 
     let moveCardUpButton = document.createElement("button");
-    moveCardUpButton.innerText = "Move card up";
+    //moveCardUpButton.innerText = "Move card up";
+    moveCardUpButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
     moveCardUpButton.addEventListener("click", moveCardUp);
     card.appendChild(moveCardUpButton);
 
     let moveCardDownButton = document.createElement("button");
-    moveCardDownButton.innerText = "Move card down";
+    //moveCardDownButton.innerText = "Move card down";
+    moveCardDownButton.innerHTML = '<i class="fas fa-arrow-down"></i>'
     moveCardDownButton.addEventListener("click", moveCardDown);
     card.appendChild(moveCardDownButton);
 
     let moveCardLeftButton = document.createElement("button");
-    moveCardLeftButton.innerText = "Move card left";
+    //moveCardLeftButton.innerText = "Move card left";
+    moveCardLeftButton.innerHTML ='<i class="fas fa-arrow-left"></i>'
     moveCardLeftButton.addEventListener("click", moveCardLeft);
     card.appendChild(moveCardLeftButton);
 
     let moveCardRightButton = document.createElement("button");
-    moveCardRightButton.innerText = "Move card right";
+    //moveCardRightButton.innerText = "Move card right";
+    moveCardRightButton.innerHTML = '<i class="fas fa-arrow-right"></i>'
     moveCardRightButton.addEventListener("click", moveCardRight);
     card.appendChild(moveCardRightButton);
 
     let deleteCardButton = document.createElement("button");
-    deleteCardButton.innerText = "Delete Card";
+    //deleteCardButton.innerText = "Delete Card";
+    deleteCardButton.innerHTML ='<i class="fas fa-trash"></i>';
     delete
     deleteCardButton.addEventListener("click", deleteCard);
     card.appendChild(deleteCardButton)
