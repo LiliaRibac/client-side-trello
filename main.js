@@ -120,6 +120,11 @@ function addCard() {
     moveCardUpButton.addEventListener("click", moveCardUp);
     card.appendChild(moveCardUpButton);
 
+    let moveCardDownButton = document.createElement("button");
+    moveCardDownButton.innerText = "Move card down";
+    moveCardDownButton.addEventListener("click", moveCardDown);
+    card.appendChild(moveCardDownButton);
+
     this.parentElement.appendChild(card) //add card to swimlane
 
 }
@@ -185,11 +190,23 @@ function moveCardUp(){
     let previous = card.previousElementSibling; // previous card
     let swimlane = card.parentElement;
 
-    if(previous && previous.getAttribute("class") == "card"){
+    if(previous && previous.getAttribute("class") === "card"){
         //make sure previous card exists
         swimlane.removeChild(card); //remove card from current position
         swimlane.insertBefore(card,  previous); // move card before previous card
 
+    }
+}
+
+function moveCardDown(){
+    let card = this.parentElement; // card to move
+    let next = card.nextElementSibling; // next card
+    let swimlane = card.parentElement;
+
+    if(next && next.getAttribute("class") === "card") {
+        //make sure next card exists
+        swimlane.removeChild(next); //remove card from current position
+        swimlane.insertBefore(next, card) //move this card before this card
     }
 }
 
