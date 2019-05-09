@@ -7,7 +7,7 @@ body{
     /* height: 100%; */
     border:solid 1px black;
     background-color: bisque;
-    flex-basis: 210px;
+    flex-basis: 240px;
     padding: 5px;
     align-items: space-between;
     margin:10px;
@@ -43,6 +43,9 @@ input, button{
    /* display: inline-block; */
     
 } 
+.editCardBtn{
+    /* display: none; */
+}
 
 .fas{
  color:#67818A;

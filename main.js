@@ -122,12 +122,7 @@ function addCard() {
     saveCardButton.addEventListener("click", saveCard);
     card.appendChild(saveCardButton);
 
-    let editCardButton = document.createElement("button");
-    //editCardButton.innerHTML = "Edit card";
-    editCardButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
-    editCardButton.setAttribute("class", "editCardBtn")
-    editCardButton.addEventListener("click", editCard);
-    card.appendChild(editCardButton);
+    
 
     let moveCardUpButton = document.createElement("button");
     //moveCardUpButton.innerText = "Move card up";
@@ -160,6 +155,13 @@ function addCard() {
     deleteCardButton.addEventListener("click", deleteCard);
     card.appendChild(deleteCardButton)
 
+    let editCardButton = document.createElement("button");
+    //editCardButton.innerHTML = "Edit card";
+    editCardButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+    editCardButton.setAttribute("class", "editCardBtn")
+    editCardButton.addEventListener("click", editCard);
+    card.appendChild(editCardButton);
+
     this.parentElement.appendChild(card) //add card to swimlane
 
 }
@@ -169,6 +171,7 @@ function saveCard() {
     let inputTitle = inputTitleBox.value //get user input
     let inputDescriptionBox = this.parentElement.childNodes[2]; //input textbox
     let inputDescription = inputDescriptionBox.value //get user input
+    
 
     if (inputTitle && inputDescription) { //textboxe are not empty
         let title = this.parentElement.childNodes[1] // title text 
@@ -179,9 +182,9 @@ function saveCard() {
         description.innerText = inputDescription; //change description
         description.style.display = "block"; // show description text
 
-        let edit = this.parentElement.childNodes[5]; //edit button
+        // let edit = this.parentElement.childNodes[5]; //edit button
         let save = this.parentElement.childNodes[4]; //save button
-        edit.style.display = "block"; // show edit button
+        // edit.style.display = "block"; // show edit button
         save.style.display = "none"; // hide save button
 
         inputTitleBox.style.display = "none"; //hide title textbox
@@ -203,6 +206,8 @@ function saveCard() {
         inputTitleBox.style.backgroundColor = "red";
         inputDescriptionBox.style.backgroundColor = "red";
     }
+    
+
 }
 
 function editCard() {
@@ -211,14 +216,14 @@ function editCard() {
     let inputDescriptionBox = this.parentElement.childNodes[2]; // input description textbox
     let description = this.parentElement.childNodes[3]; // description text 
     let save = this.parentElement.childNodes[4]; //save button
-    let edit = this.parentElement.childNodes[5]; //edit button
+    // let edit = this.parentElement.childNodes[5]; //edit button
     inputTitleBox.style.display = "block"; //show input title textbox
     inputDescriptionBox.style.display = "block" // show input description textbox
     save.style.display = "block" //show save button
 
     title.style.display = "none" //hide input title textbox
     description.style.display = "none" //hide input description textbox
-    edit.style.display = "none";
+    // edit.style.display = "none";
     
 }
 
